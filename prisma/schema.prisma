@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model OccupancyByLocation {
+  id           String @id @default(uuid())
+  locationId   String @map("location_id")
+  locationName String @map("location_name")
+  day          String
+  bookings     Int
+  bookedHours  Float  @map("booked_hours")
+
+  @@unique([locationId, day])
+  @@map("occupancy_by_location")
+}
+
+model RevenueByPlan {
+  id           String @id @default(uuid())
+  planName     String @map("plan_name")
+  month        String
+  currency     String
+  amount       Int
+  transactions Int
+
+  @@unique([planName, month, currency])
+  @@map("revenue_by_plan")
+}
+
+model MemberRetention {
+  id            String @id @default(uuid())
+  cohort        String @unique
+  started       Int
+  active        Int
+  churned       Int
+  retentionRate Float  @map("retention_rate")
+
+  @@map("member_retention")
+}
+
+model EtlRun {
+  id         String    @id @default(uuid())
+  trigger    String
+  status     String
+  startedAt  DateTime  @default(now()) @map("started_at")
+  finishedAt DateTime? @map("finished_at")
+  details    Json?
+  error      String?
+
+  @@index([startedAt])
+  @@map("etl_runs")
+}

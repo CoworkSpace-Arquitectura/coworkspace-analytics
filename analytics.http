@@ -1,0 +1,16 @@
+@url = http://localhost:3008
+
+### 1. Ejecutar el ETL a mano
+POST {{url}}/etl/run
+
+### 2. Ocupación por sede y día
+GET {{url}}/metrics/occupancy
+
+### 3. Ingresos por plan y mes
+GET {{url}}/metrics/revenue
+
+### 4. Retención por cohorte
+GET {{url}}/metrics/retention
+
+### 5. Historial de ejecuciones del ETL
+GET {{url}}/etl/runs
