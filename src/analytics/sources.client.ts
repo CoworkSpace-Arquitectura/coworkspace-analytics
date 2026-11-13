@@ -50,7 +50,7 @@ export class SourcesClient {
   }
 
   bookings() {
-    return this.get<SourceBooking[]>(`${this.urls.booking}/bookings`);
+       return this.get<SourceBooking[]>(`${this.urls.booking}/internal/bookings`);
   }
 
   subscriptions() {
