@@ -54,4 +54,10 @@ describe('ETL de analítica (integración con la base de datos)', () => {
     const runs = await request(app.getHttpServer()).get('/etl/runs').expect(200);
     expect(runs.body[0]).toMatchObject({ trigger: 'MANUAL', status: 'SUCCESS' });
   });
+
+  it('publica la documentación de la API (OpenAPI)', async () => {
+    const res = await request(app.getHttpServer()).get('/docs-json').expect(200);
+    expect(res.body.openapi).toBeDefined();
+    expect(Object.keys(res.body.paths).length).toBeGreaterThan(0);
+  });
 });

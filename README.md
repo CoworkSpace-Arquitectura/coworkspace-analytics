@@ -7,3 +7,8 @@ Microservicio de métricas. Ejecuta un ETL cada hora: extrae datos de solo lectu
 - **Endpoints:** `/metrics/occupancy`, `/metrics/revenue`, `/metrics/retention`, `POST /etl/run`, `/etl/runs`
 - **Puerto local:** 3008
 - **Tolerancia a fallos:** si una fuente no responde, el ETL queda en `FAILED` y se conservan las métricas anteriores
+
+## Documentación de la API
+
+- Swagger UI desplegado: https://coworkspace-analytics.onrender.com/docs
+- En local: http://localhost:<PUERTO>/docs (el JSON OpenAPI está en `/docs-json`).
